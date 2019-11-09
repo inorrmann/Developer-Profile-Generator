@@ -71,19 +71,19 @@ function generateHTML(data) {
     
             body {
                 background-color: #F2F1EE;
-                color: ${colors[data.color].fontShadow};
+                color: ${colors[color].fontShadow};
                 -webkit-print-color-adjust: exact !important;
             }
     
             .header-background {
-                background-color: ${colors[data.color].KEY};
+                background-color: ${colors[color].headerBackground};
                 height: 440px;
                 margin: 0;
             }
     
             .wrapper {
                 width: 90%;
-                background-color: ${colors[data.color].KEY};
+                background-color: ${colors[color].wrapperBackground};
                 margin: auto;
                 margin-top: -390px;
                 border-radius: 20px;
@@ -94,9 +94,9 @@ function generateHTML(data) {
                 width: 250px;
                 height: 250px;
                 border: 7px solid;
-                border-color: ${colors[data.color].KEY};
+                border-color: ${colors[color].borderColor};
                 border-radius: 50%;
-                box-shadow: 3px 4px 20px ${colors[data.color].KEY};
+                box-shadow: 3px 4px 20px ${colors[color].fontShadow};
                 margin: 0 auto;
                 display: flex;
                 object-fit: cover;
@@ -108,10 +108,6 @@ function generateHTML(data) {
                 text-align: center;
                 font-family: 'Poppins', sans-serif;
                 font-weight: bolder;
-            }
-    
-            h2 {
-                margin: 5px auto;
             }
     
             h2,
@@ -135,9 +131,22 @@ function generateHTML(data) {
             .git-btn {
                 width: 300px;
                 padding: 20px;
-                background-color: ${colors[data.color].KEY};
+                background-color: ${colors[color].headerBackground};
                 margin: 0 10px 20px 10px;
                 border-radius: 20px;
+            }
+
+            .buttons {
+                margin: 5px auto;
+            }
+
+            #message {
+                padding: 20px;
+            }
+
+            a:link, a:visited {
+                color: ${colors[color].fontShadow};
+                text-decoration: none;
             }
         </style>
     </head>
@@ -145,32 +154,39 @@ function generateHTML(data) {
     <body>
         <div class="header-background"></div>
         <div class="wrapper">
-            <img id="profile-pic" src="headshot.jpg" alt="profile-pic">
-            <div id="basic-info">
-                <h1 id="name">Name placeholder</h1>
-                <h2>test</h2>
-                <h3>more test</h3>
-                <div id="redirecting-links"></div>
-            </div>
+            <img id="profile-pic" src=${data.avatar_url} alt="profile-pic">
+            <h1 id="name">Hi! My name is ${data.name}</h1>
+            ${data.company != null ? `<h3>Currently @ ${data.company}</h3>` : `""`}
+            <h2>
+            ${data.location != null ? `<a href="https://www.google.com/maps/search/?api=1&query=${locationURL}">
+            <iclass="fas fa-map-marked-alt"></i>${data.location}</a>
+            <span>&emsp;</span>` : `""`}
+            <a href="${data.url}"><i class="fab fa-github"></i>GitHub</a>
+            ${data.blog != null ? `<span>&emsp;</span>
+            <a href="${data.blog}"><i class="fas fa-globe"></i>Website</a>`: `""`}
+            </h2>
         </div>
         <div id="message">
-            <h1>Placeholder to see how this will look</h1>
+            <h1>${data.bio}</h1>        
         </div>
         <div class="github-buttons">
             <div class="git-btn" id="repos">
-                <h2>Public Repositories</h2>
-                <h2>placeholder number</h2>
+                <h2 class="buttons">Public Repositories</h2>
+                <h2 class="buttons">${data.public_repos}</h2>
             </div>
             <div class="git-btn" id="stars">
-                <h2>Github Stars</h2>
+                <h2 class="buttons">Github Stars</h2>
+                <h2 class="buttons">${data.public_gists}</h2>
             </div>
         </div>
         <div class="github-buttons">
             <div class="git-btn" id="followers">
-                <h2>Followers</h2>
+                <h2 class="buttons">Followers</h2>
+                <h2 class="buttons">${data.followers}</h2>
             </div>
             <div class="git-btn" id="following">
-                <h2>Following</h2>
+                <h2 class="buttons">Following</h2>
+                <h2 class="buttons">${data.following}</h2>
             </div>
         </div>
         <div class="header-background"></div>

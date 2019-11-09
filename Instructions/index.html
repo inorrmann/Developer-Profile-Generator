@@ -15,8 +15,7 @@
         }
 
         html,
-        body
-            {
+        body {
             margin: 0;
             padding: 0;
             height: 100%;
@@ -63,10 +62,6 @@
             font-weight: bolder;
         }
 
-        h2 {
-            margin: 5px auto;
-        }
-
         h2,
         h3 {
             text-align: center;
@@ -92,6 +87,19 @@
             margin: 0 10px 20px 10px;
             border-radius: 20px;
         }
+
+        a:link, a:visited {
+            color: #595959;
+            text-decoration: none;
+        }
+
+        .buttons {
+            margin: 5px auto;
+        }
+
+        #message {
+            padding: 20px;
+        }
     </style>
 </head>
 
@@ -99,31 +107,37 @@
     <div class="header-background"></div>
     <div class="wrapper">
         <img id="profile-pic" src="headshot.jpg" alt="profile-pic">
-        <div id="basic-info">
-            <h1 id="name">Name placeholder</h1>
-            <h2>test</h2>
-            <h3>more test</h3>
-            <div id="redirecting-links"></div>
-        </div>
+        <h1 id="name">Hi! My name is Placeholder</h1>
+        <h2>Currently @</h2>
+        <h2>
+            <a href="https://www.google.com/maps/search/?api=1&query=Los+Angeles%2C+CA"> <i class="fas fa-map-marked-alt"></i>Los Angeles, CA </a>
+            <span>&emsp;</span>
+            <a href="https://api.github.com/users/inorrmann"> <i class="fab fa-github"></i> Github</a>
+            <span>&emsp;</span>
+            <a href="https://api.github.com/users/inorrmann"><i class="fas fa-globe"></i> Website</a>
+        </h2>
     </div>
     <div id="message">
-        <h1>Placeholder to see how this will look</h1>
+        <h1>This is my bio</h1>
     </div>
     <div class="github-buttons">
         <div class="git-btn" id="repos">
-            <h2>Public Repositories</h2>
-            <h2>placeholder number</h2>
+            <h2 class="buttons">Public Repositories</h2>
+            <h2 class="buttons">Nr</h2>
         </div>
         <div class="git-btn" id="stars">
-            <h2>Github Stars</h2>
+            <h2 class="buttons">Github Stars</h2>
+            <h2 class="buttons">Nr</h2>
         </div>
     </div>
     <div class="github-buttons">
         <div class="git-btn" id="followers">
-            <h2>Followers</h2>
+            <h2 class="buttons">Followers</h2>
+            <h2 class="buttons">Nr</h2>
         </div>
         <div class="git-btn" id="following">
-            <h2>Following</h2>
+            <h2 class="buttons">Following</h2>
+            <h2 class="buttons">Nr</h2>
         </div>
     </div>
     <div class="header-background"></div>

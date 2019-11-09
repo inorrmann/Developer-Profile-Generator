@@ -28,12 +28,21 @@ async function githubInfo() {
                 ]
             }]);
         const { data } = await axios.get(`https://api.github.com/users/${username}`);
-        // console.log(data);
-        console.log(data.public_repos);
+        console.log(data);
+        console.log(color);
+        // console.log(data.public_repos);
     } catch (err) {
         console.log(err);
     }
 }
+
+let locationURL = data.location
+// convert the location to URL encoded
+// commas are replaced with %2C
+//spaces are replaced with +
+// https://developers.google.com/maps/documentation/urls/guide
+// https://www.google.com/maps/search/?api=1&query=${locationURL}
+
 
 
 // inquirer.prompt([
