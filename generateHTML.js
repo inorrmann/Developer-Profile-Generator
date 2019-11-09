@@ -1,0 +1,186 @@
+const colors = {
+    red: {
+        fontShadow: "#42201E",
+        headerBackground: "#094F8F",
+        wrapperBackground: "#C2271F",
+        borderColor: "#C1CC35"
+    },
+    blue: {
+        fontShadow: "#242B42",
+        headerBackground: "#578F14",
+        wrapperBackground: "#2F51C2",
+        borderColor: "#CC6245"
+    },
+    yellow: {
+        fontShadow: "#6B6741",
+        headerBackground: "#62D8EE",
+        wrapperBackground: "#EBDA49",
+        borderColor: "#B82765"
+    },
+    green: {
+        fontShadow: "#384735",
+        headerBackground: "#945632",
+        wrapperBackground: "#6AC757",
+        borderColor: "#7570D0"
+    },
+    orange: {
+        fontShadow: "#805F3C",
+        headerBackground: "#4D0ECC",
+        wrapperBackground: "#FF972B",
+        borderColor: "#45E161"
+    },
+    violet: {
+        fontShadow: "#3A2A52",
+        headerBackground: "#16B83C",
+        wrapperBackground: "#8637FF",
+        borderColor: "#FFB252"
+    },
+    grey: {
+        fontShadow: "#595959",
+        headerBackground: "#A6A395",
+        wrapperBackground: "#BFBFBF",
+        borderColor: "#6E6C69"
+    }
+}
+
+function generateHTML(data) {
+    return
+    `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <script src="https://kit.fontawesome.com/55233fae23.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto&display=swap" rel="stylesheet">
+    
+        <style>
+            @page {
+                margin: 0;
+            }
+    
+            html,
+            body,
+                {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+    
+            body {
+                background-color: #F2F1EE;
+                color: ${colors[data.color].fontShadow};
+                -webkit-print-color-adjust: exact !important;
+            }
+    
+            .header-background {
+                background-color: ${colors[data.color].KEY};
+                height: 440px;
+                margin: 0;
+            }
+    
+            .wrapper {
+                width: 90%;
+                background-color: ${colors[data.color].KEY};
+                margin: auto;
+                margin-top: -390px;
+                border-radius: 20px;
+                padding-bottom: 10px;
+            }
+    
+            #profile-pic {
+                width: 250px;
+                height: 250px;
+                border: 7px solid;
+                border-color: ${colors[data.color].KEY};
+                border-radius: 50%;
+                box-shadow: 3px 4px 20px ${colors[data.color].KEY};
+                margin: 0 auto;
+                display: flex;
+                object-fit: cover;
+                position: relative;
+                top: -30px;
+            }
+    
+            h1 {
+                text-align: center;
+                font-family: 'Poppins', sans-serif;
+                font-weight: bolder;
+            }
+    
+            h2 {
+                margin: 5px auto;
+            }
+    
+            h2,
+            h3 {
+                text-align: center;
+                font-family: 'Roboto', sans-serif;
+                font-weight: lighter;
+            }
+    
+            #name {
+                font-size: 2.5em;
+                margin-top: 0;
+            }
+    
+            .github-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+    
+            .git-btn {
+                width: 300px;
+                padding: 20px;
+                background-color: ${colors[data.color].KEY};
+                margin: 0 10px 20px 10px;
+                border-radius: 20px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="header-background"></div>
+        <div class="wrapper">
+            <img id="profile-pic" src="headshot.jpg" alt="profile-pic">
+            <div id="basic-info">
+                <h1 id="name">Name placeholder</h1>
+                <h2>test</h2>
+                <h3>more test</h3>
+                <div id="redirecting-links"></div>
+            </div>
+        </div>
+        <div id="message">
+            <h1>Placeholder to see how this will look</h1>
+        </div>
+        <div class="github-buttons">
+            <div class="git-btn" id="repos">
+                <h2>Public Repositories</h2>
+                <h2>placeholder number</h2>
+            </div>
+            <div class="git-btn" id="stars">
+                <h2>Github Stars</h2>
+            </div>
+        </div>
+        <div class="github-buttons">
+            <div class="git-btn" id="followers">
+                <h2>Followers</h2>
+            </div>
+            <div class="git-btn" id="following">
+                <h2>Following</h2>
+            </div>
+        </div>
+        <div class="header-background"></div>
+    
+    </body>
+    
+    </html>`
+}
+
+module.exports = {
+    colors: colors,
+    generateHTML: generateHTML
+}
