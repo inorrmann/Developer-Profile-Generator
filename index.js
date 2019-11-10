@@ -34,7 +34,7 @@ async function githubInfo() {
         let locationURL = data.location.replace(/ /g, "+").replace(/,/g, "%2C");
 
         // html-pdf package call
-        var html = generateHTML.generateHTML(generateHTML.colors, data, color, locationURL);
+        var html = await generateHTML.generateHTML(generateHTML.colors, data, color, locationURL);
         var options = { format: 'Letter' };
 
         pdf.create(html, options).toFile('./profile.pdf', function (err, res) {

@@ -77,13 +77,19 @@ const generateHTML = (colors, data, color, locationURL) => {
                 -webkit-print-color-adjust: exact !important;
             }
     
-            .header-background {
+            #header-background {
                 background-color: ${colors[color].headerBackground};
                 height: 350px;
                 margin: 0;
             }
     
-            .wrapper {
+            #footer-background {
+                background-color: ${colors[color].headerBackground};
+                height: 250px;
+                margin: 0;
+            }
+
+            #wrapper {
                 width: 90%;
                 background-color: ${colors[color].wrapperBackground};
                 margin: auto;
@@ -99,8 +105,7 @@ const generateHTML = (colors, data, color, locationURL) => {
                 border-color: ${colors[color].borderColor};
                 border-radius: 50%;
                 box-shadow: 3px 4px 20px ${colors[color].fontShadow};
-                margin: 0 auto;
-                display: flex;
+                margin: auto;
                 object-fit: cover;
                 position: relative;
                 top: -30px;
@@ -124,12 +129,6 @@ const generateHTML = (colors, data, color, locationURL) => {
                 margin-top: 0;
             }
     
-            .github-buttons {
-                display: flex;
-                <!-- flex-wrap: wrap; -->
-                justify-content: center;
-            }
-    
             .git-btn {
                 width: 300px;
                 display: inline-block;
@@ -137,6 +136,10 @@ const generateHTML = (colors, data, color, locationURL) => {
                 background-color: ${colors[color].wrapperBackground};
                 margin: 0 10px 20px 10px;
                 border-radius: 20px;
+            }
+
+            #git-buttons {
+                margin-left: 67px;
             }
 
             .buttons {
@@ -162,9 +165,9 @@ const generateHTML = (colors, data, color, locationURL) => {
     </head>
     
     <body>
-        <div class="header-background"></div>
-        <div class="wrapper">
-            <img id="profile-pic" src=${data.avatar_url} alt="profile-pic">
+        <div id="header-background"></div>
+        <div id="wrapper">
+            <h1><img id="profile-pic" src=${data.avatar_url} alt="profile-pic"></h1>
             <h1 id="name">Hi! My name is ${data.name}</h1>
             ${data.company != null ? `<h3>Currently @ ${data.company}</h3>` : ``}
             <h2>
@@ -179,27 +182,29 @@ const generateHTML = (colors, data, color, locationURL) => {
         <div id="message">
             <h1>${data.bio != null ? `${data.bio}` : ``}</h1>        
         </div>
-        <div class="github-buttons">
-            <div class="git-btn" id="repos">
-                <h2 class="buttons">Public Repositories</h2>
-                <h2 class="buttons">${data.public_repos}</h2>
+        <div id="git-buttons">
+            <div class="github-buttons">
+                <div class="git-btn" id="repos">
+                    <h2 class="buttons">Public Repositories</h2>
+                    <h2 class="buttons">${data.public_repos}</h2>
+                </div>
+                <div class="git-btn" id="stars">
+                    <h2 class="buttons">Github Stars</h2>
+                    <h2 class="buttons">${data.public_gists}</h2>
+                </div>
             </div>
-            <div class="git-btn" id="stars">
-                <h2 class="buttons">Github Stars</h2>
-                <h2 class="buttons">${data.public_gists}</h2>
+            <div class="github-buttons">
+                <div class="git-btn" id="followers">
+                    <h2 class="buttons">Followers</h2>
+                    <h2 class="buttons">${data.followers}</h2>
+                </div>
+                <div class="git-btn" id="following">
+                    <h2 class="buttons">Following</h2>
+                    <h2 class="buttons">${data.following}</h2>
+                </div>
             </div>
         </div>
-        <div class="github-buttons">
-            <div class="git-btn" id="followers">
-                <h2 class="buttons">Followers</h2>
-                <h2 class="buttons">${data.followers}</h2>
-            </div>
-            <div class="git-btn" id="following">
-                <h2 class="buttons">Following</h2>
-                <h2 class="buttons">${data.following}</h2>
-            </div>
-        </div>
-        <div class="header-background"></div>
+        <div id="footer-background"></div>
     
     </body>
     
