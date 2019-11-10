@@ -1,12 +1,12 @@
 const generateHTML = require("./generateHTML.js");
 const inquirer = require("inquirer");
 const axios = require("axios");
-const fs = require("fs");
+const pdf = require("html-pdf");
 
 githubInfo();
-
 async function githubInfo() {
     try {
+        // prompt user for github username and preferred color
         const { username, color } = await inquirer.prompt([
             {
                 type: "input",
@@ -27,66 +27,23 @@ async function githubInfo() {
                     "grey"
                 ]
             }]);
+            // github API call
         const { data } = await axios.get(`https://api.github.com/users/${username}`);
-        console.log(data);
-        console.log(color);
-        // console.log(data.public_repos);
+
+        // replace location string for Google maps search
+        let locationURL = data.location.replace(/ /g, "+").replace(/,/g, "%2C");
+
+        // html-pdf package call
+        var html = generateHTML.generateHTML(generateHTML.colors, data, color, locationURL);
+        var options = { format: 'Letter' };
+
+        pdf.create(html, options).toFile('./profile.pdf', function (err, res) {
+            if (err) return console.log(err);
+            console.log(res);
+        });
+
     } catch (err) {
         console.log(err);
     }
 }
 
-let locationURL = data.location
-// convert the location to URL encoded
-// commas are replaced with %2C
-//spaces are replaced with +
-// https://developers.google.com/maps/documentation/urls/guide
-// https://www.google.com/maps/search/?api=1&query=${locationURL}
-
-
-
-// inquirer.prompt([
-//     {
-//         type: "input",
-//         message: "What is your Github username?",
-//         name: "username"
-//     },
-//     {
-//         type: "list",
-//         message: "Choose a color:",
-//         name: "color",
-//         choices: [
-//             "red",
-//             "blue",
-//             "yellow",
-//             "green",
-//             "orange",
-//             "violet",
-//             "grey"
-//         ]
-//     }])
-//     .then(({ username, color }) => {
-//         // console.log(username);
-//         // console.log(color);
-//         const queryUrl = `https://api.github.com/users/${username}`;
-//         // console.log(queryUrl);
-
-//         axios.get(queryUrl).then(response => {
-//             // console.log(response.data);
-
-//             const responseJSON = JSON.stringify(response.data, null, 2);
-//             console.log(responseJSON);
-//             fs.writeFile("profile.json", responseJSON, (err) => {
-//                 if (err) {
-//                     throw err;
-//                 }
-//                 console.log("Success!");
-//             });
-//         });
-//     })
-
-
-// font awesome
-// <i class="fab fa-github"></i>
-// <i class="fas fa-map-marked-alt"></i>
-// <i class="fas fa-globe"></i> 

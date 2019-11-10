@@ -43,9 +43,11 @@ const colors = {
     }
 }
 
-function generateHTML(data) {
-    return
-    `<!DOCTYPE html>
+
+const generateHTML = (colors, data, color, locationURL) => {
+    // console.log(data);
+    
+    return `<!DOCTYPE html>
     <html lang="en">
     
     <head>
@@ -77,7 +79,7 @@ function generateHTML(data) {
     
             .header-background {
                 background-color: ${colors[color].headerBackground};
-                height: 440px;
+                height: 350px;
                 margin: 0;
             }
     
@@ -85,7 +87,7 @@ function generateHTML(data) {
                 width: 90%;
                 background-color: ${colors[color].wrapperBackground};
                 margin: auto;
-                margin-top: -390px;
+                margin-top: -300px;
                 border-radius: 20px;
                 padding-bottom: 10px;
             }
@@ -124,14 +126,15 @@ function generateHTML(data) {
     
             .github-buttons {
                 display: flex;
-                flex-wrap: wrap;
+                <!-- flex-wrap: wrap; -->
                 justify-content: center;
             }
     
             .git-btn {
                 width: 300px;
+                display: inline-block;
                 padding: 20px;
-                background-color: ${colors[color].headerBackground};
+                background-color: ${colors[color].wrapperBackground};
                 margin: 0 10px 20px 10px;
                 border-radius: 20px;
             }
@@ -148,6 +151,13 @@ function generateHTML(data) {
                 color: ${colors[color].fontShadow};
                 text-decoration: none;
             }
+
+            @media print { 
+                body { 
+                    height: 3300px;
+                    zoom: .7;
+                } 
+            }
         </style>
     </head>
     
@@ -156,18 +166,18 @@ function generateHTML(data) {
         <div class="wrapper">
             <img id="profile-pic" src=${data.avatar_url} alt="profile-pic">
             <h1 id="name">Hi! My name is ${data.name}</h1>
-            ${data.company != null ? `<h3>Currently @ ${data.company}</h3>` : `""`}
+            ${data.company != null ? `<h3>Currently @ ${data.company}</h3>` : ``}
             <h2>
             ${data.location != null ? `<a href="https://www.google.com/maps/search/?api=1&query=${locationURL}">
-            <iclass="fas fa-map-marked-alt"></i>${data.location}</a>
+            <i class="fas fa-map-marked-alt"><span>&nbsp;</span></i>${data.location}</a>
             <span>&emsp;</span>` : `""`}
-            <a href="${data.url}"><i class="fab fa-github"></i>GitHub</a>
-            ${data.blog != null ? `<span>&emsp;</span>
-            <a href="${data.blog}"><i class="fas fa-globe"></i>Website</a>`: `""`}
+            <a href="${data.html_url}"><i class="fab fa-github"><span>&nbsp;</span></i>GitHub</a>
+            ${data.blog != "" ? `<span>&emsp;</span>
+            <a href="${data.blog}"><i class="fas fa-globe"><span>&nbsp;</span></i>Website</a>` : ``}
             </h2>
         </div>
         <div id="message">
-            <h1>${data.bio}</h1>        
+            <h1>${data.bio != null ? `${data.bio}` : ``}</h1>        
         </div>
         <div class="github-buttons">
             <div class="git-btn" id="repos">
@@ -195,8 +205,8 @@ function generateHTML(data) {
     
     </html>`
 }
-
+// generateHTML(colors);
 module.exports = {
-    colors: colors,
-    generateHTML: generateHTML
-}
+    generateHTML: generateHTML,
+    colors: colors
+};
