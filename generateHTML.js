@@ -68,7 +68,7 @@ const generateHTML = (colors, data, color, locationURL) => {
                 {
                 margin: 0;
                 padding: 0;
-                height: 100%;
+                /* <!-- height: 100%; --> */
             }
     
             body {
@@ -85,7 +85,7 @@ const generateHTML = (colors, data, color, locationURL) => {
     
             #footer-background {
                 background-color: ${colors[color].headerBackground};
-                height: 250px;
+                height: 277px;
                 margin: 0;
             }
 
@@ -157,7 +157,7 @@ const generateHTML = (colors, data, color, locationURL) => {
 
             @media print { 
                 body { 
-                    height: 3300px;
+                    /* <!-- height: 3300px; --> */
                     zoom: .7;
                 } 
             }
@@ -183,22 +183,22 @@ const generateHTML = (colors, data, color, locationURL) => {
             <h1>${data.bio != null ? `${data.bio}` : ``}</h1>        
         </div>
         <div id="git-buttons">
-            <div class="github-buttons">
-                <div class="git-btn" id="repos">
+            <div>
+                <div class="git-btn">
                     <h2 class="buttons">Public Repositories</h2>
                     <h2 class="buttons">${data.public_repos}</h2>
                 </div>
-                <div class="git-btn" id="stars">
+                <div class="git-btn">
                     <h2 class="buttons">Github Stars</h2>
                     <h2 class="buttons">${data.public_gists}</h2>
                 </div>
             </div>
-            <div class="github-buttons">
-                <div class="git-btn" id="followers">
+            <div>
+                <div class="git-btn">
                     <h2 class="buttons">Followers</h2>
                     <h2 class="buttons">${data.followers}</h2>
                 </div>
-                <div class="git-btn" id="following">
+                <div class="git-btn">
                     <h2 class="buttons">Following</h2>
                     <h2 class="buttons">${data.following}</h2>
                 </div>
